@@ -1,0 +1,45 @@
+{
+ "best": {
+  "low": 0.15,
+  "high": 0.7,
+  "new": 0.7,
+  "buffer": 30,
+  "match": 0.8,
+  "min_size": 0,
+  "truck_conf": 0.0,
+  "van": true,
+  "gmc": false
+ },
+ "metrics": {
+  "MOTA": 0.7187756889282387,
+  "IDF1": 0.8706783000535745,
+  "IDS": 1,
+  "FP": 2973,
+  "FN": 940
+ },
+ "default": {
+  "stage": "base",
+  "low": 0.1,
+  "high": 0.25,
+  "new": 0.25,
+  "buffer": 30,
+  "match": 0.8,
+  "min_size": 0,
+  "truck_conf": 0.0,
+  "van": true,
+  "gmc": true,
+  "MOTA": 0.13250193019612327,
+  "IDF1": 0.7037623458016303,
+  "IDS": 13,
+  "FP": 13304,
+  "FN": 314
+ },
+ "frames_per_seq": 300,
+ "seqs": [
+  "M0203",
+  "M0205",
+  "M0208",
+  "M0209",
+  "M0403"
+ ]
+}

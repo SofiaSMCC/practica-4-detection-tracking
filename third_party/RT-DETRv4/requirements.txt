@@ -1,0 +1,8 @@
+torch
+torchvision>=0.20
+faster-coco-eval>=1.6.5
+PyYAML
+tensorboard
+scipy
+calflops
+transformers

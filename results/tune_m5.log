@@ -1,0 +1,8 @@
+[m5] pliegue 0: ajustado MOTA(entrenamiento)=0.534 | validacion=0.616 (por defecto 0.578) cfg={'high': 0.55, 'low': 0.2, 'new': 0.7, 'buffer': 15, 'match': 0.7} [1057s]
+[m5] pliegue 1: ajustado MOTA(entrenamiento)=0.590 | validacion=0.441 (por defecto -0.101) cfg={'high': 0.65, 'low': 0.2, 'new': 0.65, 'buffer': 60} [1516s]
+[m5] pliegue 2: ajustado MOTA(entrenamiento)=0.490 | validacion=0.737 (por defecto 0.517) cfg={'high': 0.6, 'low': 0.25, 'new': 0.7, 'buffer': 60, 'match': 0.7} [1988s]
+[m5] pliegue 3: ajustado MOTA(entrenamiento)=0.617 | validacion=0.322 (por defecto -0.327) cfg={'high': 0.45, 'new': 0.6, 'buffer': 60} [2722s]
+[m5] VALIDACION CRUZADA: MOTA ajustado=0.529 frente a por defecto=0.167
+[m5] FINAL (20 sec., con muestra): {'high': 0.65, 'low': 0.2, 'new': 0.65, 'buffer': 30, 'match': 0.8}
+   MOTA 0.553 (por defecto 0.167)
+escrito results/method5_fusion_bytetrack_cv

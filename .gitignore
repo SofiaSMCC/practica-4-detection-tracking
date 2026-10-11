@@ -1,0 +1,4 @@
+ /data
+
+/weights/rtdetrv4_visdrone_m/model.pth
+/weights/rtdetrv4_visdrone_l/model.pth

@@ -1,0 +1,8 @@
+[m4] pliegue 0: ajustado MOTA(entrenamiento)=0.462 | validacion=0.535 (por defecto 0.507) cfg={'high': 0.7, 'low': 0.15, 'new': 0.7, 'buffer': 60} [555s]
+[m4] pliegue 1: ajustado MOTA(entrenamiento)=0.511 | validacion=0.382 (por defecto 0.212) cfg={'high': 0.65, 'low': 0.2, 'new': 0.7, 'buffer': 15, 'match': 0.7} [1005s]
+[m4] pliegue 2: ajustado MOTA(entrenamiento)=0.428 | validacion=0.596 (por defecto 0.504) cfg={'high': 0.75, 'low': 0.05, 'new': 0.75} [1107s]
+[m4] pliegue 3: ajustado MOTA(entrenamiento)=0.542 | validacion=0.297 (por defecto 0.156) cfg={'high': 0.7, 'low': 0.15, 'new': 0.7, 'buffer': 60} [1107s]
+[m4] VALIDACION CRUZADA: MOTA ajustado=0.452 frente a por defecto=0.345
+[m4] FINAL (20 sec., con muestra): {'high': 0.7, 'low': 0.15, 'new': 0.7, 'buffer': 60, 'match': 0.8}
+   MOTA 0.481 (por defecto 0.345)
+escrito results/method4_sahi_yolo26_bytetrack_cv

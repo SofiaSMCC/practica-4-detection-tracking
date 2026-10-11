@@ -1,0 +1,76 @@
+[base] por defecto                        MOTA=0.133 IDF1=0.704 IDS=  13 FP=13304 FN=  314
+[1-high] high=0.4                           MOTA=0.355 IDF1=0.761 IDS=   7 FP= 9780 FN=  321
+[1-high] high=0.5                           MOTA=0.544 IDF1=0.814 IDS=   2 FP= 5706 FN=  641
+[1-high] high=0.6                           MOTA=0.648 IDF1=0.850 IDS=   2 FP= 3846 FN=  662
+[1-high] high=0.7                           MOTA=0.718 IDF1=0.870 IDS=   1 FP= 3010 FN=  929
+[1-high] high=0.8                           MOTA=0.596 IDF1=0.724 IDS=   0 FP= 1396 FN= 5263
+[1-high] high=0.85                          MOTA=0.413 IDF1=0.552 IDS=   0 FP= 1008 FN=13507
+[1-high] high=0.9                           MOTA=0.151 IDF1=0.248 IDS=   0 FP=  454 FN=23673
+   -> mejor high = 0.7 (MOTA 0.718)
+
+[1-low] low=0.1                            MOTA=0.718 IDF1=0.870 IDS=   1 FP= 3010 FN=  929
+[1-low] low=0.3                            MOTA=0.717 IDF1=0.868 IDS=   1 FP= 2863 FN= 1004
+[1-low] low=0.5                            MOTA=0.697 IDF1=0.846 IDS=   2 FP= 2599 FN= 1207
+[1-low] low=0.6                            MOTA=0.686 IDF1=0.833 IDS=   3 FP= 2289 FN= 1850
+[1-low] low=0.7                            MOTA=0.655 IDF1=0.802 IDS=   5 FP= 1958 FN= 2712
+   -> mejor low = 0.1 (MOTA 0.718)
+
+[1-new] new=0.7                            MOTA=0.718 IDF1=0.870 IDS=   1 FP= 3010 FN=  929
+[1-new] new=0.75                           MOTA=0.711 IDF1=0.861 IDS=   0 FP= 2760 FN= 1411
+[1-new] new=0.8                            MOTA=0.609 IDF1=0.746 IDS=   0 FP= 1600 FN= 4317
+   -> mejor new = 0.7 (MOTA 0.718)
+
+[2-buffer] buffer=15                          MOTA=0.718 IDF1=0.870 IDS=   1 FP= 3010 FN=  929
+[2-buffer] buffer=30                          MOTA=0.718 IDF1=0.870 IDS=   1 FP= 3010 FN=  929
+[2-buffer] buffer=60                          MOTA=0.718 IDF1=0.870 IDS=   1 FP= 3010 FN=  929
+[2-buffer] buffer=90                          MOTA=0.718 IDF1=0.870 IDS=   1 FP= 3010 FN=  929
+   -> mejor buffer = 30 (MOTA 0.718)
+
+[2-match] match=0.6                          MOTA=0.718 IDF1=0.870 IDS=   1 FP= 3010 FN=  929
+[2-match] match=0.7                          MOTA=0.718 IDF1=0.870 IDS=   1 FP= 3010 FN=  929
+[2-match] match=0.8                          MOTA=0.718 IDF1=0.870 IDS=   1 FP= 3010 FN=  929
+[2-match] match=0.9                          MOTA=0.718 IDF1=0.870 IDS=   1 FP= 3010 FN=  929
+   -> mejor match = 0.8 (MOTA 0.718)
+
+[2-gmc] gmc=True                           MOTA=0.718 IDF1=0.870 IDS=   1 FP= 3010 FN=  929
+[2-gmc] gmc=False                          MOTA=0.718 IDF1=0.871 IDS=   1 FP= 3008 FN=  928
+   -> mejor gmc = False (MOTA 0.718)
+
+[3-min_size] min_size=0                         MOTA=0.718 IDF1=0.871 IDS=   1 FP= 3008 FN=  928
+[3-min_size] min_size=15                        MOTA=0.697 IDF1=0.841 IDS=   1 FP= 2621 FN= 1185
+[3-min_size] min_size=18                        MOTA=0.681 IDF1=0.819 IDS=   2 FP= 2156 FN= 2190
+[3-min_size] min_size=20                        MOTA=0.638 IDF1=0.752 IDS=   1 FP= 2077 FN= 3061
+[3-min_size] min_size=22                        MOTA=0.621 IDF1=0.717 IDS=   1 FP= 1946 FN= 3840
+[3-min_size] min_size=25                        MOTA=0.596 IDF1=0.701 IDS=   1 FP= 1882 FN= 5749
+   -> mejor min_size = 0 (MOTA 0.718)
+
+[3-van] van=True                           MOTA=0.718 IDF1=0.871 IDS=   1 FP= 3008 FN=  928
+[3-van] van=False                          MOTA=0.664 IDF1=0.840 IDS=   1 FP= 2912 FN= 3780
+   -> mejor van = True (MOTA 0.718)
+
+[3-truck] truck_conf=0.0                     MOTA=0.718 IDF1=0.871 IDS=   1 FP= 3008 FN=  928
+[3-truck] truck_conf=0.8                     MOTA=0.641 IDF1=0.815 IDS=   2 FP= 2835 FN= 1491
+[3-truck] truck_conf=0.9                     MOTA=0.623 IDF1=0.805 IDS=   1 FP= 2810 FN= 2012
+[3-truck] truck_conf=0.95                    MOTA=0.611 IDF1=0.798 IDS=   1 FP= 2810 FN= 2165
+[3-truck] truck_conf=1.01                    MOTA=0.611 IDF1=0.798 IDS=   1 FP= 2810 FN= 2165
+   -> mejor truck_conf = 0.0 (MOTA 0.718)
+
+[4-high] high=0.6                           MOTA=0.706 IDF1=0.870 IDS=   1 FP= 3196 FN=  817
+[4-high] high=0.65                          MOTA=0.713 IDF1=0.871 IDS=   1 FP= 3157 FN=  857
+[4-high] high=0.7                           MOTA=0.718 IDF1=0.871 IDS=   1 FP= 3008 FN=  928
+[4-high] high=0.75                          MOTA=0.709 IDF1=0.858 IDS=   0 FP= 2640 FN= 1644
+[4-high] high=0.8                           MOTA=0.596 IDF1=0.724 IDS=   0 FP= 1396 FN= 5263
+   -> mejor high = 0.7 (MOTA 0.718)
+
+[4-low] low=-0.05                          MOTA=0.711 IDF1=0.868 IDS=   1 FP= 3086 FN=  933
+[4-low] low=0.0                            MOTA=0.711 IDF1=0.868 IDS=   1 FP= 3086 FN=  933
+[4-low] low=0.05                           MOTA=0.711 IDF1=0.868 IDS=   1 FP= 3086 FN=  933
+[4-low] low=0.1                            MOTA=0.718 IDF1=0.871 IDS=   1 FP= 3008 FN=  928
+[4-low] low=0.15                           MOTA=0.719 IDF1=0.871 IDS=   1 FP= 2973 FN=  940
+[4-low] low=0.2                            MOTA=0.718 IDF1=0.870 IDS=   1 FP= 2936 FN=  956
+   -> mejor low = 0.15 (MOTA 0.719)
+
+
+MEJOR: {'low': 0.15, 'high': 0.7, 'new': 0.7, 'buffer': 30, 'match': 0.8, 'min_size': 0, 'truck_conf': 0.0, 'van': True, 'gmc': False}
+MEJOR METRICAS: {'MOTA': np.float64(0.7187756889282387), 'IDF1': np.float64(0.8706783000535745), 'IDS': 1, 'FP': 2973, 'FN': 940}
+BASE  METRICAS: {'MOTA': np.float64(0.13250193019612327), 'IDF1': np.float64(0.7037623458016303), 'IDS': 13, 'FP': 13304, 'FN': 314}

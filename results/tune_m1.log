@@ -1,0 +1,8 @@
+[m1] pliegue 0: ajustado MOTA(entrenamiento)=0.434 | validacion=0.613 (por defecto 0.605) cfg={'min_hits': 5, 'iou': 0.5} [549s]
+[m1] pliegue 1: ajustado MOTA(entrenamiento)=0.527 | validacion=0.312 (por defecto 0.328) cfg={'conf': 0.15, 'min_hits': 5, 'iou': 0.5} [750s]
+[m1] pliegue 2: ajustado MOTA(entrenamiento)=0.449 | validacion=0.537 (por defecto 0.581) cfg={'conf': 0.45, 'min_hits': 5, 'iou': 0.1} [1040s]
+[m1] pliegue 3: ajustado MOTA(entrenamiento)=0.512 | validacion=0.378 (por defecto 0.375) cfg={'min_hits': 5, 'iou': 0.5} [1040s]
+[m1] VALIDACION CRUZADA: MOTA ajustado=0.460 frente a por defecto=0.472
+[m1] FINAL (20 sec., con muestra): {'conf': 0.25, 'max_age': 30, 'min_hits': 5, 'iou': 0.5}
+   MOTA 0.479 (por defecto 0.472)
+escrito results/method1_yolo11_sort_cv

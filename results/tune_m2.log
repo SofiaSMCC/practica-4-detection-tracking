@@ -1,0 +1,8 @@
+[m2] pliegue 0: ajustado MOTA(entrenamiento)=0.476 | validacion=0.577 (por defecto 0.606) cfg={'high': 0.75, 'low': 0.05, 'new': 0.8, 'buffer': 60, 'match': 0.7} [792s]
+[m2] pliegue 1: ajustado MOTA(entrenamiento)=0.535 | validacion=0.396 (por defecto 0.309) cfg={'high': 0.65, 'low': 0.05, 'new': 0.65, 'buffer': 60} [1419s]
+[m2] pliegue 2: ajustado MOTA(entrenamiento)=0.465 | validacion=0.590 (por defecto 0.588) cfg={'high': 0.65, 'low': 0.05, 'new': 0.8, 'buffer': 60, 'match': 0.7} [1485s]
+[m2] pliegue 3: ajustado MOTA(entrenamiento)=0.560 | validacion=0.352 (por defecto 0.283) cfg={'high': 0.65, 'low': 0.05, 'new': 0.75, 'buffer': 15} [1837s]
+[m2] VALIDACION CRUZADA: MOTA ajustado=0.479 frente a por defecto=0.446
+[m2] FINAL (20 sec., con muestra): {'high': 0.75, 'low': 0.05, 'new': 0.8, 'buffer': 60, 'match': 0.7}
+   MOTA 0.501 (por defecto 0.446)
+escrito results/method2_yolo26_bytetrack_cv
