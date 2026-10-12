@@ -1,0 +1,37 @@
+{
+ "variant": "YRS_slot",
+ "detectors": [
+  [
+   "yolo26",
+   "rtdetr",
+   "sahi"
+  ],
+  [
+   1,
+   1,
+   1
+  ],
+  0.55,
+  [
+   0,
+   1,
+   0
+  ]
+ ],
+ "tracker": {
+  "buffer": 30,
+  "high": 0.65,
+  "low": 0.2,
+  "match": 0.8,
+  "new": 0.65
+ },
+ "post": {
+  "static_min": 60,
+  "static_score": 0.6,
+  "interp": 0,
+  "min_len": 20,
+  "min_score": 0,
+  "rel_size": 0.6,
+  "static_px": 0
+ }
+}

@@ -1,0 +1,23 @@
+{
+ "variant": "Y",
+ "final": {
+  "cfg": [
+   {
+    "buffer": 30,
+    "high": 0.65,
+    "low": 0.2,
+    "match": 0.8,
+    "new": 0.65
+   },
+   {
+    "static_min": 60,
+    "static_score": 0.6,
+    "interp": 20,
+    "min_len": 20,
+    "min_score": 0.5,
+    "rel_size": 0.6,
+    "static_px": 10
+   }
+  ]
+ }
+}

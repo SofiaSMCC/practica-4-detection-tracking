@@ -1,11 +1,14 @@
 // Genera presentacion/Practica4_Deteccion_Tracking.pptx con el estilo de template.pdf
 // (banda azul marino, pie "Página N", tablas estilo LaTeX, diagramas de cajas redondeadas).
-// Uso (desde la raiz del proyecto):  python -I presentacion/make_figures.py && node presentacion/build_deck.js
+// Uso (desde la raiz del proyecto):  python -I presentacion/make_figures.py && python -I presentacion/collect_results.py
+//   && python -I presentacion/collect_m4.py && node presentacion/build_deck.js
 // Las laminas marcadas "Por completar" son la estructura de resultados: se rellenan con results/comparison_mean.csv.
 const pptxgen = require("pptxgenjs");
 const fs = require("fs");
 const path = require("path");
-const { applyTheme } = require("/home/marcelino.maita/.claude/skills/synced/21ca2af7-4662-4d2f-a2a2-c6a78ffddc45_c033fe8a-d2df-4226-86e8-d0d0ad902e7c/pptx/scripts/apply_theme.js");
+// apply_theme.js viene del skill pptx; su ruta cambia por maquina: se puede pasar con PPTX_SKILL=<carpeta del skill>
+const SKILL_DIRS = [process.env.PPTX_SKILL, "/home/marcelino.maita/.claude/skills/synced/21ca2af7-4662-4d2f-a2a2-c6a78ffddc45_c033fe8a-d2df-4226-86e8-d0d0ad902e7c/pptx"].filter(Boolean);
+const { applyTheme } = require(path.join(SKILL_DIRS.find((d) => fs.existsSync(path.join(d, "scripts", "apply_theme.js"))), "scripts", "apply_theme.js"));
 
 const HERE = __dirname;
 const FIG = (f) => path.join(HERE, "fig", f);
@@ -235,7 +238,7 @@ pres.addSection({ title: "Metodología" });
     ["1  Baseline", "YOLOv11", "SORT", "Asociación puramente geométrica"],
     ["2  Eficiencia", "YOLO26 (sin NMS)", "ByteTrack", "Latencia sin NMS; uso de detecciones de baja confianza"],
     ["3  Precisión", "RT-DETRv4", "BoT-SORT + GMC", "Atención global y compensación del movimiento de cámara"],
-    ["4  Resolución", "YOLO26 + SAHI", "ByteTrack", "Detección de vehículos muy pequeños por slices"],
+    ["4  Resolución", "YOLO26 + SAHI, fusionado con RT-DETRv4", "ByteTrack + filtro de escala", "Vehículos pequeños (SAHI) y heurísticas propias: fusión de detectores y filtro de escala"],
   ], { x: 0.4, y: 1.0, w: 9.2, colW: [1.7, 2.0, 1.9, 3.6], rowH: 0.62, size: 14 });
   T(s, "En todos los métodos la detección usa pesos preentrenados (sin reentrenar) y la asociación se ejecuta como un paso aparte.", { x: 0.4, y: 4.4, w: 9.2, h: 0.7, fontSize: 14, color: MUTED });
 }
@@ -425,29 +428,57 @@ pres.addSection({ title: "Metodología" });
     ["track_high / track_low", "Umbrales de las dos rondas", "0,25 / 0,1"],
     ["gmc_method", "Compensación de cámara", "sparseOptFlow"],
     ["slice / overlap", "Tamaño y solape de los recuadros SAHI", "640 px / 0,2"],
+    ["IoU fusión · ρ · largo mín.", "Fusión de cajas y post-proceso (método 4)", "0,55 · 0,6 · 20 frames"],
   ], { x: 0.4, y: 0.9, w: 9.2, colW: [2.4, 3.6, 3.2], rowH: 0.46, size: 13 });
 }
 
-// 19. Heuristica adicional: fusion de detectores
+// 19. Metodo 4: SAHI + heuristicas (fusion con votos)
 {
-  const s = content("Heurística adicional: fusión de detectores", "Metodología");
-  const items = ["YOLO26\n(UAVDT)", "RT-DETRv4\n(VisDrone)", "Fusión\nde cajas", "ByteTrack"];
-  items.forEach((t, i) => {
-    const x = 0.4 + i * 2.4;
-    box(s, x, 0.85, 2.0, 0.8, t, { size: 12, fill: i === 2 ? "DCE6F5" : "FFFFFF" });
-    if (i < 3) arrow(s, x + 2.0, 1.25, x + 2.4, 1.25);
-  });
+  const s = content("Método 4: SAHI + heurísticas", "Metodología");
+  box(s, 0.4, 0.8, 1.75, 0.55, "YOLO26 (imagen)", { size: 11 });
+  box(s, 0.4, 1.45, 1.75, 0.55, "SAHI 640 + YOLO26", { size: 11 });
+  box(s, 0.4, 2.1, 1.75, 0.55, "RT-DETRv4 (VisDrone)", { size: 11 });
+  s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x: 0.3, y: 0.74, w: 1.95, h: 1.32, rectRadius: 0.12, fill: { color: "FFFFFF", transparency: 100 }, line: { color: NAVY, width: 1.25, dashType: "dash" } });
+  const chain = [["Fusión de cajas\n(votos)", 2.65], ["ByteTrack", 4.55], ["Filtro de escala\n+ largo ≥ 20", 6.45]];
+  chain.forEach(([t, x], i) => box(s, x, 1.15, 1.6, 0.85, t, { size: 11.5, fill: i === 0 || i === 2 ? "DCE6F5" : "FFFFFF" }));
+  arrow(s, 2.15, 1.075, 2.65, 1.5); arrow(s, 2.15, 2.375, 2.65, 1.65);
+  arrow(s, 4.25, 1.575, 4.55, 1.575); arrow(s, 6.15, 1.575, 6.45, 1.575); arrow(s, 8.05, 1.575, 8.35, 1.575);
+  T(s, "MOT", { x: 8.4, y: 1.4, w: 1.2, h: 0.35, fontFace: DIAG, fontSize: 13, valign: "middle" });
+  caption(s, "Recuadro punteado: YOLO26 y SAHI usan los mismos pesos y cuentan como un solo voto", 2.65, 2.2, 7.0);
   T(s, bullets([
-    "YOLO26 sigue el criterio de anotación de UAVDT; RT-DETR recupera vehículos en vistas oblicuas",
-    "Se agrupan cajas de ambos con IoU ≥ 0,55 y se promedian ponderadas por su confianza",
-    "Una caja que ve un solo modelo queda con la mitad de confianza: hace falta consenso",
-    "Sin entrenamiento: solo combina pesos preentrenados, y se ajusta el tracker igual que en los demás",
-  ], { size: 13, gap: 7 }), { x: 0.5, y: 2.0, w: 5.0, h: 3.0 });
-  label(s, "Caja fusionada", 5.8, 1.95, 4);
-  eq(s, "fuse_box", 5.8, 2.3, { scale: 0.9 });
-  label(s, "Confianza (M modelos)", 5.8, 3.55, 4);
-  eq(s, "fuse_score", 5.8, 3.9, { scale: 0.9 });
-  cite(s, "Inspirada en Weighted Boxes Fusion [18]; implementación propia (scripts/fuse_cache.py)");
+    "SAHI como respaldo: entra solo donde YOLO26 no vio nada; si ambos ven la caja, se queda la de mayor confianza",
+    "Como tercer votante empeoraba (MOTA 0,485): el acuerdo YOLO26–SAHI no es consenso entre modelos distintos",
+    "Caja fusionada: promedio ponderado por confianza (IoU ≥ 0,55). Una caja vista por un solo voto queda con la mitad de confianza",
+  ], { size: 12.5, gap: 6 }), { x: 0.5, y: 2.75, w: 5.3, h: 2.3 });
+  label(s, "Caja fusionada", 6.0, 2.75, 3.6);
+  eq(s, "fuse_box", 6.0, 3.05, { scale: 0.8 });
+  label(s, "Confianza", 6.0, 3.95, 3.6);
+  eq(s, "fuse_vote", 6.0, 4.25, { scale: 0.8 });
+  cite(s, "Inspirada en Weighted Boxes Fusion [18]; implementación propia (scripts/m4_lib.py)");
+  s.addNotes("La fusión del método 5 anterior pasa a ser parte del método 4. La novedad es cómo entra SAHI: comparte el voto con YOLO26 porque son el mismo modelo.");
+}
+
+// 20. Heuristica: filtro de escala relativa
+{
+  const s = content("Heurística: filtro de escala relativa", "Metodología");
+  const fa = RS.fp_analysis.seqs, ks = ["M1101", "M1007", "M0701", "M0601"];
+  s.addChart(pres.charts.BAR, [
+    { name: "Vehículos del GT", labels: ks, values: ks.map((q) => fa[q].gt_side) },
+    { name: "Falsos positivos persistentes", labels: ks, values: ks.map((q) => fa[q].fp_side) },
+  ], { x: 0.3, y: 0.75, w: 4.9, h: 3.4, barDir: "col", barGrouping: "clustered", chartColors: [NAVY, HL],
+    showLegend: true, legendPos: "b", legendFontFace: SANS, legendFontSize: 10, showTitle: true, title: "Lado típico √(w·h), px (mediana)",
+    titleFontFace: SANS, titleFontSize: 12, titleColor: INK, showValue: true, dataLabelPosition: "outEnd", dataLabelFontSize: 9, dataLabelFormatCode: "0",
+    catAxisLabelFontFace: SANS, valAxisLabelFontFace: SANS, catAxisLabelFontSize: 10, valAxisLabelFontSize: 9,
+    catAxisLabelColor: "4B5563", valAxisLabelColor: "4B5563", valGridLine: { color: "E5E7EB", size: 0.5 }, catGridLine: { style: "none" } });
+  T(s, bullets([
+    `Los falsos positivos que hunden M1101 y M1007 miden la mitad que los vehículos reales (${fm(fa.M1101.fp_side, 0)} frente a ${fm(fa.M1101.gt_side, 0)} px en M1101)`,
+    `En general no son autos estacionados: con la cámara compensada (GMC), solo el ${fm(RS.fp_analysis.static_pct_total, 0)} % de los frames con falsos positivos (20 secuencias) está quieto`,
+    "Un dron vuela a altura casi constante: los vehículos de una escena tienen escala parecida",
+  ], { size: 12.5, gap: 6 }), { x: 5.45, y: 0.85, w: 4.2, h: 2.6 });
+  eq(s, "relsize", 5.45, 3.55, { scale: 0.7 });
+  T(s, "La mediana sale de los propios tracks (≥ 10 frames): no usa el GT. ρ se eligió por validación cruzada.", { x: 5.45, y: 3.95, w: 4.2, h: 0.6, fontSize: 11.5, color: MUTED });
+  cite(s, "Tracks antes del filtro (fusión + ByteTrack). Un track es falso positivo si menos de la mitad de sus cajas empareja con el GT (scripts/m4_fp_analysis.py)");
+  s.addNotes("Este análisis cambió la hipótesis inicial: pensábamos en autos estacionados, pero los FP no son estáticos sino demasiado pequeños para la escena. El filtro estático no mejoró en validación cruzada; el de escala sí (+0,015 de MOTA).");
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -467,8 +498,8 @@ pres.addSection({ title: "Evaluación" });
 // ---------------------------------------------------------------------------------------------
 // RESULTADOS (numeros reales: presentacion/results.json, generado por collect_results.py)
 pres.addSection({ title: "Resultados" });
-const MN = { m1: "1  YOLOv11 + SORT", m2: "2  YOLO26 + ByteTrack", m3: "3  RT-DETRv4 + BoT-SORT", m4: "4  SAHI + YOLO26 + ByteTrack", m5: "Fusión YOLO26 + RT-DETR" };
-const W4 = ["m1", "m2", "m3", "m4"];
+const MN = { m1: "1  YOLOv11 + SORT", m2: "2  YOLO26 + ByteTrack", m3: "3  RT-DETRv4 + BoT-SORT", m4: "SAHI + YOLO26 (versión inicial)", m5: "Fusión YOLO26 + RT-DETR (sin SAHI)", m4n: "4  SAHI + fusión + filtro de escala" };
+const W4 = ["m1", "m2", "m3", "m4n"];
 const inte = (x) => Math.round(x).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 const hl = (txt, on) => (on ? { text: txt, fill: HL2, bold: true } : { text: txt });
 const argbest = (keys, f, dir = 1) => keys.reduce((a, b) => (dir * (f(b) - f(a)) > 0 ? b : a));
@@ -479,42 +510,43 @@ const argbest = (keys, f, dir = 1) => keys.reduce((a, b) => (dir * (f(b) - f(a))
   const bF = argbest(W4, (k) => me[k].fps), bC = argbest(W4, (k) => cv[k].tuned);
   latexTable(s, ["Método", "MOTA", "IDF1", "IDS", "FPS (GPU)", "MOTA (val. cruzada)"],
     W4.map((k) => [MN[k], hl(fm(me[k].mota, 3), k === bM), hl(fm(me[k].idf1, 3), k === bI), hl(inte(me[k].ids), k === bS),
-      hl(fm(me[k].fps, 1), me[k].fps >= me[bF].fps - 0.1), hl(fm(cv[k].tuned, 3), k === bC)]),
+      hl(fm(me[k].fps, 1), me[k].fps >= me[bF].fps - 0.1), hl(fm(cv[k].tuned, 3) + (k === "m4n" ? " †" : ""), k === bC)]),
     { x: 0.4, y: 1.0, w: 9.2, colW: [3.2, 1.0, 1.0, 0.9, 1.3, 1.8], rowH: 0.55, size: 14 });
   T(s, bullets([
-    "Promedio sobre las 20 secuencias de test, con hiperparámetros ajustados por validación cruzada",
-    "Resaltado: mejor valor de cada columna. FPS medido en GPU sobre 5 secuencias, con valores por defecto",
-    "Entre los métodos 1, 2 y 4 hay ≈ 0,02 de MOTA: dentro del ruido entre secuencias",
-  ], { size: 13, gap: 6 }), { x: 0.5, y: 4.15, w: 9.1, h: 1.1 });
-  s.addNotes("MOTA promedio = promedio simple de las 20 secuencias (lo que pide el PDF). La última columna es la estimación sin sesgo: MOTA en las secuencias que no se usaron para ajustar.");
+    "Promedio sobre las 20 secuencias de test, con hiperparámetros ajustados por validación cruzada. Resaltado: mejor de cada columna",
+    "FPS en GPU sobre las 5 primeras secuencias; el método 4 se midió de punta a punta (3 detectores + fusión + tracking)",
+    "† Validación cruzada sobre secuencias completas (ByteTrack fijo + grilla de post-proceso); los métodos 1–3 usan ventanas de 300 frames",
+  ], { size: 12, gap: 5 }), { x: 0.5, y: 4.0, w: 9.1, h: 1.2 });
+  s.addNotes("MOTA promedio = promedio simple de las 20 secuencias (lo que pide el PDF). La última columna es la estimación sin sesgo: MOTA en las secuencias que no se usaron para ajustar. La corrida en GPU del método 4 reproduce la de las detecciones cacheadas (MOTA global 0,548 en ambas).");
 }
 {
   const s = content("Resultados por secuencia", "Resultados");
-  const labels = RS.seqs, series = [["m1", LIGHTBLUE], ["m2", NAVY], ["m3", HL], ["m4", GREEN]];
+  const labels = RS.seqs, series = [["m1", LIGHTBLUE], ["m2", NAVY], ["m3", HL], ["m4n", GREEN]];
   s.addChart(pres.charts.BAR, series.map(([k]) => ({ name: MN[k].replace(/^\d\s+/, ""), labels, values: labels.map((q) => RS.per_seq[k][q]) })), {
     x: 0.3, y: 0.75, w: 9.4, h: 4.4, barDir: "col", barGrouping: "clustered", chartColors: series.map(([, c]) => c),
     showLegend: true, legendPos: "b", legendFontFace: SANS, legendFontSize: 10, showTitle: false,
     catAxisLabelFontFace: SANS, valAxisLabelFontFace: SANS, catAxisLabelFontSize: 9, valAxisLabelFontSize: 9, catAxisLabelRotate: -90,
     catAxisLabelColor: "4B5563", valAxisLabelColor: "4B5563", valGridLine: { color: "E5E7EB", size: 0.5 }, catGridLine: { style: "none" },
-    valAxisMinVal: -0.6, valAxisMaxVal: 1, valAxisMajorUnit: 0.2, barGapWidthPct: 30,
+    valAxisMinVal: -0.6, valAxisMaxVal: 1, valAxisMajorUnit: 0.2, valAxisLabelFormatCode: "0.0", barGapWidthPct: 30,
   });
-  s.addNotes("MOTA por secuencia de los 4 métodos ajustados. Las secuencias M0403, M0205, M0801 y M1009 salen bien; M1101, M1007, M0601 y M0602 salen mal (noche con destellos y vehículos de ~12 px).");
+  s.addNotes("MOTA por secuencia de los 4 métodos ajustados. Las secuencias M0403, M0205, M0801 y M1009 salen bien; M1101, M1007, M0601 y M0602 salen mal (noche con destellos y vehículos de ~12 px). El método 4 es el único que no cae por debajo de −0,2 en M1101.");
 }
 {
   const s = content("Efecto del ajuste: validación cruzada", "Resultados");
   const cfgTxt = (k) => {
     const c = RS.cfg[k];
     if (k === "m1") return `conf ${fm(c.conf, 2)} · min_hits ${c.min_hits} · iou ${fm(c.iou, 1)}`;
+    if (k === "m4n") return `alta ${fm(c.tracker.high, 2)} · baja ${fm(c.tracker.low, 2)} · ρ ${fm(c.post.rel_size, 1)} · largo ≥ ${c.post.min_len}`;
     return `alta ${fm(c.high, 2)} · baja ${fm(c.low, 2)} · buffer ${c.buffer} · match ${fm(c.match, 1)}` + (k === "m3" && c.gmc === false ? " · sin GMC" : "");
   };
   latexTable(s, ["Método", "Por defecto", "Ajustado", "Parámetros finales"],
-    ["m1", "m2", "m3", "m4", "m5"].map((k) => [MN[k], fm(RS.cv[k].default, 3), hl(fm(RS.cv[k].tuned, 3), true), { text: cfgTxt(k), align: "left" }]),
-    { x: 0.4, y: 0.9, w: 9.2, colW: [3.0, 1.2, 1.1, 3.9], rowH: 0.5, size: 12.5 });
+    ["m1", "m2", "m3", "m4", "m5", "m4n"].map((k) => [MN[k], RS.cv[k].default == null ? pending() : fm(RS.cv[k].default, 3), hl(fm(RS.cv[k].tuned, 3) + (k === "m4n" ? " †" : ""), true), { text: cfgTxt(k), align: "left" }]),
+    { x: 0.4, y: 0.85, w: 9.2, colW: [3.0, 1.2, 1.1, 3.9], rowH: 0.45, size: 12 });
   T(s, bullets([
-    "MOTA en secuencias no vistas al ajustar: 4 pliegues de 5 secuencias (se ajusta con 15 y se mide en 5)",
+    "MOTA en secuencias no vistas al ajustar: 4 pliegues de 5 secuencias (se ajusta con 15 y se mide en 5). † secuencias completas",
     "RT-DETR y SAHI cambian mucho: por defecto dejan pasar demasiados falsos positivos",
-    "En SORT el ajuste no ayuda: ya estaba cerca de su óptimo",
-  ], { size: 12, gap: 5 }), { x: 0.5, y: 4.3, w: 9.1, h: 0.95 });
+    "Ajustar muchos parámetros a la vez sobreajusta: en el método 4 se fijó ByteTrack y solo se ajustó ρ y el largo mínimo",
+  ], { size: 12, gap: 4 }), { x: 0.5, y: 4.15, w: 9.1, h: 1.1 });
   s.addNotes("Un primer ajuste sobre solo 5 secuencias dio MOTA 0,70 ahí y 0,22 en las 15 restantes: sobreajuste. La validación cruzada evita ese espejismo.");
 }
 {
@@ -558,29 +590,30 @@ const argbest = (keys, f, dir = 1) => keys.reduce((a, b) => (dir * (f(b) - f(a))
   ], { size: 13, gap: 7 }), { x: 0.5, y: 3.85, w: 9.1, h: 1.3 });
 }
 {
-  const s = content("Heurística adicional: resultados de la fusión", "Resultados");
-  const me = RS.methods, cv = RS.cv, rc = RS.recall, ks = ["m2", "m3", "m5"];
-  const per = RS.per_seq, seqs = RS.seqs, wins = seqs.filter((q) => ["m1", "m2", "m3", "m4"].every((k) => per.m5[q] >= per[k][q])).length;
-  const vs2 = seqs.filter((q) => per.m5[q] > per.m2[q]).length;
-  latexTable(s, ["Método", "MOTA", "IDF1", "FN", "Recall pequeño", "MOTA (val. cruzada)", "FPS"],
-    ks.map((k) => [MN[k], hl(fm(me[k].mota, 3), k === "m5"), hl(fm(me[k].idf1, 3), k === "m5"), inte(me[k].fn), hl(fm(rc[k].tuned[0], 3), k === "m5"),
-      hl(fm(cv[k].tuned, 3), k === "m5"), (k === "m5" ? "≈ " : "") + fm(me[k].fps, 1)]),
-    { x: 0.4, y: 1.0, w: 9.2, colW: [3.0, 0.9, 0.9, 1.1, 1.3, 1.2, 0.8], rowH: 0.5, size: 13 });
+  const s = content("Método 4: ablación paso a paso", "Resultados");
+  const ab = RS.ablation_m4.filter((r) => r.paso !== "control" || r.cfg === "paso 6 sin SAHI");
+  const fin = ab.findIndex((r) => r.paso === "6");
+  latexTable(s, ["Paso", "Configuración", "MOTA (val. cruzada)", "IDF1", "IDS"],
+    ab.map((r, i) => [r.paso === "control" ? "ctrl." : r.paso, { text: r.cfg.replace(" = MÉTODO 4 FINAL", ""), align: "left", bold: i === fin },
+      hl(fm(r.cv_mota, 3), i === fin), fm(r.cv_idf1, 3), inte(r.ids)]),
+    { x: 0.4, y: 0.75, w: 9.2, colW: [0.7, 4.9, 1.5, 1.0, 1.1], rowH: 0.34, size: 12 });
+  const rc = RS.recall, d = (rc.m4n.tuned[0] - rc.m4n_sin_sahi.tuned[0]) * 100;
+  const wins = RS.seqs.filter((q) => RS.per_seq.m4n[q] > RS.per_seq.m5[q] + 0.001).length;
   T(s, bullets([
-    `Mejor MOTA en ${wins} de 20 secuencias y mejora al método 2 en ${vs2} de 20`,
-    "Combina la precisión de YOLO26 con el recall de RT-DETR (mejor en vistas oblicuas como M0209)",
-    "Costo: dos detectores. FPS estimado a partir de las latencias medidas de cada uno; no se midió directamente",
-    "Falla de noche (M1007, M1101): suma los falsos positivos de ambos",
-  ], { size: 12.5, gap: 5 }), { x: 0.5, y: 3.5, w: 9.1, h: 1.7 });
+    `La fusión aporta lo más grande (+0,08 sobre SAHI solo); el filtro de escala suma +0,015 y el largo mínimo baja los IDS de ${RS.ablation_m4[4].ids} a ${RS.ablation_m4[5].ids}`,
+    `SAHI no cambia el MOTA promedio (control sin SAHI: dentro del ruido), pero sube el recall de pequeños ${fm(d, 1)} puntos y el MOTA global (${fm(RS.methods.m4n.mota_g, 3)})`,
+    `Frente a la fusión sin SAHI ni filtros, el método 4 gana en ${wins} de 20 secuencias. Interpolación, filtro por confianza y filtro estático: sin ganancia`,
+  ], { size: 11.5, gap: 4 }), { x: 0.5, y: 3.7, w: 9.1, h: 1.3 });
+  cite(s, "Mismo protocolo en todas las filas: validación cruzada en 4 pliegues sobre secuencias completas (results/m4_exp/ablation_m4.csv)");
 }
 {
   const s = content("¿Dónde funciona mejor el seguimiento?", "Resultados");
   const g = RS.groups, order = ["vista cenital", "baja altura", "día", "media altura", "vista lateral", "niebla", "vista frontal", "noche", "gran altura"];
-  const mean4 = (x) => (x.m1 + x.m2 + x.m3 + x.m4) / 4;
+  const mean4 = (x) => (x.m1 + x.m2 + x.m3 + x.m4n) / 4;
   const rows = order.filter((n) => g[n]).sort((a, b) => mean4(g[b]) - mean4(g[a]));
-  latexTable(s, ["Escena", "n", "Método 1", "Método 2", "Método 3", "Método 4", "Fusión"],
-    rows.map((n) => [n, String(g[n].n), ...["m1", "m2", "m3", "m4", "m5"].map((k) => fm(g[n][k], 2))]),
-    { x: 0.4, y: 0.85, w: 9.2, colW: [2.3, 0.6, 1.3, 1.3, 1.3, 1.3, 1.1], rowH: 0.34, size: 12.5 });
+  latexTable(s, ["Escena", "n", "Método 1", "Método 2", "Método 3", "Método 4"],
+    rows.map((n) => { const b = argbest(["m1", "m2", "m3", "m4n"], (k) => g[n][k]); return [n, String(g[n].n), ...["m1", "m2", "m3", "m4n"].map((k) => hl(fm(g[n][k], 2), k === b))]; }),
+    { x: 0.4, y: 0.85, w: 9.2, colW: [2.6, 0.6, 1.5, 1.5, 1.5, 1.5], rowH: 0.34, size: 12.5 });
   T(s, "MOTA promedio por tipo de escena. Los vehículos grandes y la vista cenital favorecen a todos; la noche, la vista frontal y los vehículos de ≈ 12 px los perjudican. La densidad de tráfico casi no influye.", { x: 0.5, y: 4.5, w: 9.1, h: 0.7, fontSize: 12, color: "374151" });
   s.addNotes("Con 20 secuencias, gran altura (2) y vista cenital (4) son medias frágiles. La correlación entre el MOTA y el tamaño mediano del vehículo es +0,48; con la densidad, casi cero.");
 }
@@ -600,7 +633,7 @@ const argbest = (keys, f, dir = 1) => keys.reduce((a, b) => (dir * (f(b) - f(a))
 {
   const s = content("Demo visual: caso de fallo (noche, M1101)", "Resultados");
   s.addImage({ path: FIG("compare_M1101_cv.jpg"), x: 1.05, y: 0.72, w: 7.9, h: 3.92, altText: "Comparación en M1101" });
-  T(s, "M1101 (noche). Los tres métodos detectan bien los vehículos de la calzada, pero suman falsos positivos: autos aparcados y luces que el GT no anota. MOTA: −0,13 / −0,51 / −0,42.", { x: 0.4, y: 4.7, w: 9.2, h: 0.6, fontSize: 13, color: "374151" });
+  T(s, `M1101 (noche). Los vehículos de la calzada se detectan bien, pero aparecen cajas pequeñas que el GT no anota (luces, objetos lejanos). MOTA: −0,13 / −0,51 / −0,42; con el filtro de escala, el método 4 llega a ${fm(RS.per_seq.m4n.M1101, 2)}.`, { x: 0.4, y: 4.7, w: 9.2, h: 0.6, fontSize: 13, color: "374151" });
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -610,13 +643,14 @@ pres.addSection({ title: "Cierre" });
   const s = content("Conclusiones", "Cierre");
   const me = RS.methods;
   T(s, bullets([
-    `Mejor equilibrio entre los cuatro métodos: YOLO26 + ByteTrack (MOTA ${fm(me.m2.mota, 3)}, ${inte(me.m2.ids)} cambios de ID, ${fm(me.m2.fps, 0)} FPS)`,
-    `Ajustar los hiperparámetros pesó más que la arquitectura: con validación cruzada, RT-DETR pasó de MOTA ${fm(RS.cv.m3.default, 2)} a ${fm(RS.cv.m3.tuned, 2)}`,
-    `ByteTrack cambia mucho menos de ID que SORT: ${inte(me.m2.ids)} frente a ${inte(me.m1.ids)}`,
-    "SAHI mejora algo el recall de vehículos pequeños, pero cuesta ≈ 4× en latencia; los slices de 320 px aportan poco",
-    `Heurística adicional: fusionar YOLO26 y RT-DETR da el mayor MOTA (${fm(me.m5.mota, 3)}) e IDF1 (${fm(me.m5.idf1, 3)}), con dos detectores`,
+    `Mejor resultado: método 4, SAHI + fusión + filtro de escala (MOTA ${fm(me.m4n.mota, 3)}, IDF1 ${fm(me.m4n.idf1, 3)}, ${inte(me.m4n.ids)} cambios de ID), a ${fm(me.m4n.fps, 0)} FPS`,
+    `Mejor equilibrio velocidad–precisión: YOLO26 + ByteTrack (MOTA ${fm(me.m2.mota, 3)}, ${inte(me.m2.ids)} cambios de ID, ${fm(me.m2.fps, 0)} FPS)`,
+    `Ajustar pesó más que la arquitectura: con validación cruzada, RT-DETR pasó de MOTA ${fm(RS.cv.m3.default, 2)} a ${fm(RS.cv.m3.tuned, 2)}; ByteTrack cambia mucho menos de ID que SORT (${inte(me.m2.ids)} frente a ${inte(me.m1.ids)})`,
+    "SAHI solo no basta: rinde como respaldo de otro detector, y su aporte se ve en los vehículos pequeños más que en el MOTA promedio",
+    "Analizar los errores guió la heurística: los falsos positivos eran cajas demasiado pequeñas para la escena, no autos estacionados",
+    "Contexto: trackers recientes reportan MOTA 0,47–0,55 en UAVDT [19, 20], con otro protocolo y pesos propios, así que no es comparable directamente",
     "Limitaciones: split de entrenamiento de los pesos YOLO sin verificar, sin ReID, y mucha variación entre escenas",
-  ], { size: 14, gap: 9 }), { x: 0.6, y: 0.95, w: 8.8, h: 4.2 });
+  ], { size: 14, gap: 7 }), { x: 0.6, y: 0.85, w: 8.8, h: 4.45 });
 }
 {
   const s = pres.addSlide({ masterName: "CLOSING", sectionTitle: "Cierre" });
@@ -642,10 +676,12 @@ pres.addSection({ title: "Cierre" });
     "[16] E. Ristani, F. Solera, R. Zou, R. Cucchiara, and C. Tomasi, “Performance measures and a data set for multi-target, multi-camera tracking,” in ECCV Workshops, 2016.",
     "[17] A. Milan, L. Leal-Taixé, I. Reid, S. Roth, and K. Schindler, “MOT16: A benchmark for multi-object tracking,” arXiv:1603.00831, 2016.",
     "[18] R. Solovyev, W. Wang, and T. Gabruseva, “Weighted boxes fusion: Ensembling boxes from different object detection models,” Image and Vision Computing, 2021.",
+    "[19] I. Song and J. Lee, “SFTrack: A robust scale and motion adaptive algorithm for tracking small and fast moving objects,” arXiv:2410.20079, 2024.",
+    "[20] J. Ma et al., “Tracking the unstable: Appearance-guided motion modeling for robust multi-object tracking in UAV-captured videos,” arXiv:2508.01730, 2025.",
   ];
-  [["Referencias (1/2)", refs.slice(0, 9)], ["Referencias (2/2)", refs.slice(9)]].forEach(([title, list]) => {
+  [["Referencias (1/2)", refs.slice(0, 10)], ["Referencias (2/2)", refs.slice(10)]].forEach(([title, list]) => {
     const s = content(title, "Cierre");
-    T(s, list.map((t, i) => ({ text: t, options: { breakLine: i < list.length - 1, paraSpaceAfter: 7, fontSize: 12, fontFace: SANS, color: "374151" } })), { x: 0.5, y: 0.85, w: 9, h: 4.4 });
+    T(s, list.map((t, i) => ({ text: t, options: { breakLine: i < list.length - 1, paraSpaceAfter: 6, fontSize: 11, fontFace: SANS, color: "374151" } })), { x: 0.5, y: 0.85, w: 9, h: 4.45 });
   });
 }
 

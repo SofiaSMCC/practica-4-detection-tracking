@@ -1,4 +1,4 @@
-"""Renderiza las ecuaciones de la presentacion como PNG transparentes con fuente Computer Modern (aspecto LaTeX)
+"""Renderiza las ecuaciones (o solo algunas: --only nombre1 nombre2) de la presentacion como PNG transparentes con fuente Computer Modern (aspecto LaTeX)
 y guarda sus tamanos (pulgadas, a 18 pt) en fig/eq/eq.json. Uso: python -I presentacion/make_equations.py"""
 import json
 from pathlib import Path
@@ -42,13 +42,19 @@ EQ = {
     # fusion de detectores
     "fuse_box": r"$\mathbf{b}=\dfrac{\sum_{m} s_m\,\mathbf{b}_m}{\sum_{m} s_m}$",
     "fuse_score": r"$s=\dfrac{1}{M}\sum_{m=1}^{M} s_m,\qquad M=2$",
+    # metodo 4 final: fusion con votos (YOLO26 y SAHI comparten uno) y filtro de escala relativa
+    "fuse_vote": r"$s=\dfrac{1}{V}\sum_{v=1}^{V} s_v,\qquad V=2\ \mathrm{votos}$",
+    "relsize": r"$\tilde{\ell}_i<\rho\cdot\mathrm{med}_j\,\tilde{\ell}_j\ \Rightarrow\ \mathrm{borrar}\ i,\qquad \ell=\sqrt{w\,h},\ \ \rho=0.6$",
     # metricas
     "mota": r"$\mathrm{MOTA}=1-\dfrac{\mathrm{FN}+\mathrm{FP}+\mathrm{IDS}}{\mathrm{GT}}$",
     "idf1": r"$\mathrm{IDF1}=\dfrac{2\,\mathrm{IDTP}}{2\,\mathrm{IDTP}+\mathrm{IDFP}+\mathrm{IDFN}}$",
     "fps": r"$\mathrm{FPS}=\dfrac{N_{\mathrm{frames}}}{t_{\mathrm{det}}+t_{\mathrm{trk}}}$",
 }
-sizes = {}
+import sys
+ONLY = sys.argv[sys.argv.index("--only") + 1:] if "--only" in sys.argv else None   # p.ej. --only fuse_vote relsize
+sizes = json.load(open(OUT / "eq.json")) if ONLY and (OUT / "eq.json").exists() else {}
 for name, tex in EQ.items():
+    if ONLY and name not in ONLY: continue
     fig = plt.figure(figsize=(0.1, 0.1)); fig.text(0, 0, tex, fontsize=FS, color="#1A1A1A")
     p = OUT / f"{name}.png"
     fig.savefig(p, dpi=DPI, bbox_inches="tight", pad_inches=0.03, transparent=True); plt.close(fig)

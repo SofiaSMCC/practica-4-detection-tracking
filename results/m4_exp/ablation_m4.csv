@@ -1,0 +1,10 @@
+paso,configuracion,variante,post,cv_mota,cv_idf1,IDS,FP,FN,mota_20seq
+1,SAHI 640 + YOLO26 (método 4 anterior),S,ninguno,0.465,0.651,82,42690,139802,0.465
+2,"YOLO26 solo, imagen completa (método 2)",Y,ninguno,0.485,0.686,238,52901,122071,0.485
+3,YOLO26 + RT-DETR fusionados (método 5 anterior),YR,ninguno,0.549,0.754,125,65164,91057,0.549
+4,+ SAHI como respaldo de YOLO26,YRS_slot,ninguno,0.544,0.758,135,70236,84647,0.544
+5,"+ filtro de escala relativa (0,6)",YRS_slot,solo escala,0.557,0.753,129,62868,93620,0.56
+6,+ largo mínimo 20 frames = MÉTODO 4 FINAL,YRS_slot,escala + largo,0.559,0.754,87,62055,94071,0.563
+control,paso 6 sin SAHI,YR,escala + largo,0.565,0.751,109,58242,97487,0.566
+control,paso 6 + interpolación + confianza + estático,YRS_slot,todo,0.557,0.752,86,62242,94743,0.563
+control,SAHI solo + filtros (escala + largo),S,escala + largo,0.472,0.645,62,37130,146146,0.478

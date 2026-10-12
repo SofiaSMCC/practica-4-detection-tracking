@@ -1,0 +1,154 @@
+[post YR] tracker fijo {'buffer': 30, 'high': 0.65, 'low': 0.2, 'match': 0.8, 'new': 0.65} | 96 combinaciones x 20 secuencias
+   YR M0205 listo
+   YR M0203 listo
+   YR M0208 listo
+   YR M0209 listo
+   YR M0403 listo
+   YR M0601 listo
+   YR M0602 listo
+   YR M0606 listo
+   YR M0801 listo
+   YR M0802 listo
+   YR M0701 listo
+   YR M1004 listo
+   YR M1007 listo
+   YR M1001 listo
+   YR M1009 listo
+   YR M1101 listo
+   YR M1302 listo
+   YR M1301 listo
+   YR M1303 listo
+   YR M1401 listo
+[post YR | ninguno] pliegue 0: ajuste=0.535 validacion=0.592 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YR | ninguno] pliegue 1: ajuste=0.581 validacion=0.453 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YR | ninguno] pliegue 2: ajuste=0.491 validacion=0.724 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YR | ninguno] pliegue 3: ajuste=0.590 validacion=0.427 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YR | ninguno] VALIDACION CRUZADA MOTA=0.549 IDF1=0.754 | final (20 sec.) 0.549 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YR | solo escala] pliegue 0: ajuste=0.559 validacion=0.582 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0.6, "static_px": 0}
+[post YR | solo escala] pliegue 1: ajuste=0.592 validacion=0.482 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0.6, "static_px": 0}
+[post YR | solo escala] pliegue 2: ajuste=0.515 validacion=0.713 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0.6, "static_px": 0}
+[post YR | solo escala] pliegue 3: ajuste=0.592 validacion=0.481 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0.6, "static_px": 0}
+[post YR | solo escala] VALIDACION CRUZADA MOTA=0.564 IDF1=0.751 | final (20 sec.) 0.564 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0.6, "static_px": 0}
+[post YR | solo largo] pliegue 0: ajuste=0.537 validacion=0.593 {"interp": 0, "min_len": 20, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YR | solo largo] pliegue 1: ajuste=0.582 validacion=0.459 {"interp": 0, "min_len": 20, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YR | solo largo] pliegue 2: ajuste=0.493 validacion=0.725 {"interp": 0, "min_len": 20, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YR | solo largo] pliegue 3: ajuste=0.593 validacion=0.427 {"interp": 0, "min_len": 20, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YR | solo largo] VALIDACION CRUZADA MOTA=0.551 IDF1=0.755 | final (20 sec.) 0.551 {"interp": 0, "min_len": 20, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YR | solo interpolacion] pliegue 0: ajuste=0.535 validacion=0.592 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YR | solo interpolacion] pliegue 1: ajuste=0.582 validacion=0.450 {"interp": 20, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YR | solo interpolacion] pliegue 2: ajuste=0.491 validacion=0.724 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YR | solo interpolacion] pliegue 3: ajuste=0.590 validacion=0.426 {"interp": 20, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YR | solo interpolacion] VALIDACION CRUZADA MOTA=0.548 IDF1=0.754 | final (20 sec.) 0.549 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YR | solo confianza] pliegue 0: ajuste=0.535 validacion=0.592 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YR | solo confianza] pliegue 1: ajuste=0.581 validacion=0.453 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YR | solo confianza] pliegue 2: ajuste=0.491 validacion=0.724 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YR | solo confianza] pliegue 3: ajuste=0.590 validacion=0.427 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YR | solo confianza] VALIDACION CRUZADA MOTA=0.549 IDF1=0.754 | final (20 sec.) 0.549 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YR | solo estatico] pliegue 0: ajuste=0.535 validacion=0.592 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YR | solo estatico] pliegue 1: ajuste=0.581 validacion=0.453 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YR | solo estatico] pliegue 2: ajuste=0.491 validacion=0.714 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 10}
+[post YR | solo estatico] pliegue 3: ajuste=0.590 validacion=0.427 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YR | solo estatico] VALIDACION CRUZADA MOTA=0.546 IDF1=0.752 | final (20 sec.) 0.549 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YR | escala + largo] pliegue 0: ajuste=0.561 validacion=0.582 {"interp": 0, "min_len": 20, "min_score": 0, "rel_size": 0.6, "static_px": 0}
+[post YR | escala + largo] pliegue 1: ajuste=0.593 validacion=0.484 {"interp": 0, "min_len": 10, "min_score": 0, "rel_size": 0.6, "static_px": 0}
+[post YR | escala + largo] pliegue 2: ajuste=0.517 validacion=0.714 {"interp": 0, "min_len": 20, "min_score": 0, "rel_size": 0.6, "static_px": 0}
+[post YR | escala + largo] pliegue 3: ajuste=0.595 validacion=0.481 {"interp": 0, "min_len": 20, "min_score": 0, "rel_size": 0.6, "static_px": 0}
+[post YR | escala + largo] VALIDACION CRUZADA MOTA=0.565 IDF1=0.751 | final (20 sec.) 0.566 {"interp": 0, "min_len": 20, "min_score": 0, "rel_size": 0.6, "static_px": 0}
+[post YR | escala + largo + interp.] pliegue 0: ajuste=0.562 validacion=0.582 {"interp": 20, "min_len": 20, "min_score": 0, "rel_size": 0.6, "static_px": 0}
+[post YR | escala + largo + interp.] pliegue 1: ajuste=0.594 validacion=0.481 {"interp": 20, "min_len": 10, "min_score": 0, "rel_size": 0.6, "static_px": 0}
+[post YR | escala + largo + interp.] pliegue 2: ajuste=0.517 validacion=0.714 {"interp": 0, "min_len": 20, "min_score": 0, "rel_size": 0.6, "static_px": 0}
+[post YR | escala + largo + interp.] pliegue 3: ajuste=0.595 validacion=0.481 {"interp": 20, "min_len": 20, "min_score": 0, "rel_size": 0.6, "static_px": 0}
+[post YR | escala + largo + interp.] VALIDACION CRUZADA MOTA=0.565 IDF1=0.751 | final (20 sec.) 0.567 {"interp": 20, "min_len": 20, "min_score": 0, "rel_size": 0.6, "static_px": 0}
+[post YR | todo] pliegue 0: ajuste=0.562 validacion=0.582 {"interp": 20, "min_len": 20, "min_score": 0, "rel_size": 0.6, "static_px": 0}
+[post YR | todo] pliegue 1: ajuste=0.594 validacion=0.481 {"interp": 20, "min_len": 10, "min_score": 0, "rel_size": 0.6, "static_px": 0}
+[post YR | todo] pliegue 2: ajuste=0.517 validacion=0.704 {"interp": 0, "min_len": 20, "min_score": 0, "rel_size": 0.6, "static_px": 10}
+[post YR | todo] pliegue 3: ajuste=0.595 validacion=0.481 {"interp": 20, "min_len": 20, "min_score": 0, "rel_size": 0.6, "static_px": 0}
+[post YR | todo] VALIDACION CRUZADA MOTA=0.562 IDF1=0.749 | final (20 sec.) 0.567 {"interp": 20, "min_len": 20, "min_score": 0, "rel_size": 0.6, "static_px": 0}
+
+== YR: ablacion (MOTA en validacion cruzada, secuencias completas) [398s] ==
+  ninguno                    CV MOTA 0.549  IDF1 0.754  | 20 sec. 0.549  {'interp': 0, 'min_len': 0, 'min_score': 0, 'rel_size': 0, 'static_px': 0}
+  solo escala                CV MOTA 0.564  IDF1 0.751  | 20 sec. 0.564  {'interp': 0, 'min_len': 0, 'min_score': 0, 'rel_size': 0.6, 'static_px': 0}
+  solo largo                 CV MOTA 0.551  IDF1 0.755  | 20 sec. 0.551  {'interp': 0, 'min_len': 20, 'min_score': 0, 'rel_size': 0, 'static_px': 0}
+  solo interpolacion         CV MOTA 0.548  IDF1 0.754  | 20 sec. 0.549  {'interp': 0, 'min_len': 0, 'min_score': 0, 'rel_size': 0, 'static_px': 0}
+  solo confianza             CV MOTA 0.549  IDF1 0.754  | 20 sec. 0.549  {'interp': 0, 'min_len': 0, 'min_score': 0, 'rel_size': 0, 'static_px': 0}
+  solo estatico              CV MOTA 0.546  IDF1 0.752  | 20 sec. 0.549  {'interp': 0, 'min_len': 0, 'min_score': 0, 'rel_size': 0, 'static_px': 0}
+  escala + largo             CV MOTA 0.565  IDF1 0.751  | 20 sec. 0.566  {'interp': 0, 'min_len': 20, 'min_score': 0, 'rel_size': 0.6, 'static_px': 0}
+  escala + largo + interp.   CV MOTA 0.565  IDF1 0.751  | 20 sec. 0.567  {'interp': 20, 'min_len': 20, 'min_score': 0, 'rel_size': 0.6, 'static_px': 0}
+  todo                       CV MOTA 0.562  IDF1 0.749  | 20 sec. 0.567  {'interp': 20, 'min_len': 20, 'min_score': 0, 'rel_size': 0.6, 'static_px': 0}
+[post YRS_slot] tracker fijo {'buffer': 30, 'high': 0.65, 'low': 0.2, 'match': 0.8, 'new': 0.65} | 96 combinaciones x 20 secuencias
+   YRS_slot M0205 listo
+   YRS_slot M0203 listo
+   YRS_slot M0208 listo
+   YRS_slot M0209 listo
+   YRS_slot M0403 listo
+   YRS_slot M0601 listo
+   YRS_slot M0602 listo
+   YRS_slot M0606 listo
+   YRS_slot M0801 listo
+   YRS_slot M0802 listo
+   YRS_slot M0701 listo
+   YRS_slot M1004 listo
+   YRS_slot M1007 listo
+   YRS_slot M1001 listo
+   YRS_slot M1009 listo
+   YRS_slot M1101 listo
+   YRS_slot M1302 listo
+   YRS_slot M1301 listo
+   YRS_slot M1303 listo
+   YRS_slot M1401 listo
+[post YRS_slot | ninguno] pliegue 0: ajuste=0.529 validacion=0.590 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YRS_slot | ninguno] pliegue 1: ajuste=0.578 validacion=0.442 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YRS_slot | ninguno] pliegue 2: ajuste=0.479 validacion=0.741 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YRS_slot | ninguno] pliegue 3: ajuste=0.591 validacion=0.405 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YRS_slot | ninguno] VALIDACION CRUZADA MOTA=0.544 IDF1=0.758 | final (20 sec.) 0.544 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YRS_slot | solo escala] pliegue 0: ajuste=0.556 validacion=0.568 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0.7, "static_px": 0}
+[post YRS_slot | solo escala] pliegue 1: ajuste=0.590 validacion=0.473 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0.6, "static_px": 0}
+[post YRS_slot | solo escala] pliegue 2: ajuste=0.504 validacion=0.730 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0.6, "static_px": 0}
+[post YRS_slot | solo escala] pliegue 3: ajuste=0.595 validacion=0.458 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0.6, "static_px": 0}
+[post YRS_slot | solo escala] VALIDACION CRUZADA MOTA=0.557 IDF1=0.753 | final (20 sec.) 0.560 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0.6, "static_px": 0}
+[post YRS_slot | solo largo] pliegue 0: ajuste=0.532 validacion=0.593 {"interp": 0, "min_len": 20, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YRS_slot | solo largo] pliegue 1: ajuste=0.580 validacion=0.450 {"interp": 0, "min_len": 20, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YRS_slot | solo largo] pliegue 2: ajuste=0.483 validacion=0.742 {"interp": 0, "min_len": 20, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YRS_slot | solo largo] pliegue 3: ajuste=0.595 validacion=0.405 {"interp": 0, "min_len": 20, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YRS_slot | solo largo] VALIDACION CRUZADA MOTA=0.548 IDF1=0.759 | final (20 sec.) 0.548 {"interp": 0, "min_len": 20, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YRS_slot | solo interpolacion] pliegue 0: ajuste=0.529 validacion=0.590 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YRS_slot | solo interpolacion] pliegue 1: ajuste=0.579 validacion=0.438 {"interp": 20, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YRS_slot | solo interpolacion] pliegue 2: ajuste=0.479 validacion=0.741 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YRS_slot | solo interpolacion] pliegue 3: ajuste=0.591 validacion=0.405 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YRS_slot | solo interpolacion] VALIDACION CRUZADA MOTA=0.543 IDF1=0.758 | final (20 sec.) 0.544 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YRS_slot | solo confianza] pliegue 0: ajuste=0.529 validacion=0.590 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YRS_slot | solo confianza] pliegue 1: ajuste=0.578 validacion=0.442 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YRS_slot | solo confianza] pliegue 2: ajuste=0.479 validacion=0.741 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YRS_slot | solo confianza] pliegue 3: ajuste=0.591 validacion=0.405 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YRS_slot | solo confianza] VALIDACION CRUZADA MOTA=0.544 IDF1=0.758 | final (20 sec.) 0.544 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YRS_slot | solo estatico] pliegue 0: ajuste=0.529 validacion=0.590 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YRS_slot | solo estatico] pliegue 1: ajuste=0.578 validacion=0.442 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YRS_slot | solo estatico] pliegue 2: ajuste=0.479 validacion=0.733 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 10}
+[post YRS_slot | solo estatico] pliegue 3: ajuste=0.591 validacion=0.405 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YRS_slot | solo estatico] VALIDACION CRUZADA MOTA=0.542 IDF1=0.757 | final (20 sec.) 0.544 {"interp": 0, "min_len": 0, "min_score": 0, "rel_size": 0, "static_px": 0}
+[post YRS_slot | escala + largo] pliegue 0: ajuste=0.559 validacion=0.568 {"interp": 0, "min_len": 20, "min_score": 0, "rel_size": 0.7, "static_px": 0}
+[post YRS_slot | escala + largo] pliegue 1: ajuste=0.591 validacion=0.480 {"interp": 0, "min_len": 20, "min_score": 0, "rel_size": 0.6, "static_px": 0}
+[post YRS_slot | escala + largo] pliegue 2: ajuste=0.507 validacion=0.731 {"interp": 0, "min_len": 20, "min_score": 0, "rel_size": 0.6, "static_px": 0}
+[post YRS_slot | escala + largo] pliegue 3: ajuste=0.598 validacion=0.459 {"interp": 0, "min_len": 20, "min_score": 0, "rel_size": 0.6, "static_px": 0}
+[post YRS_slot | escala + largo] VALIDACION CRUZADA MOTA=0.559 IDF1=0.754 | final (20 sec.) 0.563 {"interp": 0, "min_len": 20, "min_score": 0, "rel_size": 0.6, "static_px": 0}
+[post YRS_slot | escala + largo + interp.] pliegue 0: ajuste=0.559 validacion=0.568 {"interp": 0, "min_len": 20, "min_score": 0, "rel_size": 0.7, "static_px": 0}
+[post YRS_slot | escala + largo + interp.] pliegue 1: ajuste=0.591 validacion=0.477 {"interp": 20, "min_len": 20, "min_score": 0, "rel_size": 0.6, "static_px": 0}
+[post YRS_slot | escala + largo + interp.] pliegue 2: ajuste=0.507 validacion=0.731 {"interp": 0, "min_len": 20, "min_score": 0, "rel_size": 0.6, "static_px": 0}
+[post YRS_slot | escala + largo + interp.] pliegue 3: ajuste=0.598 validacion=0.459 {"interp": 0, "min_len": 20, "min_score": 0, "rel_size": 0.6, "static_px": 0}
+[post YRS_slot | escala + largo + interp.] VALIDACION CRUZADA MOTA=0.559 IDF1=0.754 | final (20 sec.) 0.563 {"interp": 0, "min_len": 20, "min_score": 0, "rel_size": 0.6, "static_px": 0}
+[post YRS_slot | todo] pliegue 0: ajuste=0.559 validacion=0.568 {"interp": 0, "min_len": 20, "min_score": 0, "rel_size": 0.7, "static_px": 0}
+[post YRS_slot | todo] pliegue 1: ajuste=0.591 validacion=0.477 {"interp": 20, "min_len": 20, "min_score": 0, "rel_size": 0.6, "static_px": 0}
+[post YRS_slot | todo] pliegue 2: ajuste=0.507 validacion=0.723 {"interp": 0, "min_len": 20, "min_score": 0, "rel_size": 0.6, "static_px": 10}
+[post YRS_slot | todo] pliegue 3: ajuste=0.598 validacion=0.459 {"interp": 0, "min_len": 20, "min_score": 0, "rel_size": 0.6, "static_px": 0}
+[post YRS_slot | todo] VALIDACION CRUZADA MOTA=0.557 IDF1=0.752 | final (20 sec.) 0.563 {"interp": 0, "min_len": 20, "min_score": 0, "rel_size": 0.6, "static_px": 0}
+
+== YRS_slot: ablacion (MOTA en validacion cruzada, secuencias completas) [394s] ==
+  ninguno                    CV MOTA 0.544  IDF1 0.758  | 20 sec. 0.544  {'interp': 0, 'min_len': 0, 'min_score': 0, 'rel_size': 0, 'static_px': 0}
+  solo escala                CV MOTA 0.557  IDF1 0.753  | 20 sec. 0.560  {'interp': 0, 'min_len': 0, 'min_score': 0, 'rel_size': 0.6, 'static_px': 0}
+  solo largo                 CV MOTA 0.548  IDF1 0.759  | 20 sec. 0.548  {'interp': 0, 'min_len': 20, 'min_score': 0, 'rel_size': 0, 'static_px': 0}
+  solo interpolacion         CV MOTA 0.543  IDF1 0.758  | 20 sec. 0.544  {'interp': 0, 'min_len': 0, 'min_score': 0, 'rel_size': 0, 'static_px': 0}
+  solo confianza             CV MOTA 0.544  IDF1 0.758  | 20 sec. 0.544  {'interp': 0, 'min_len': 0, 'min_score': 0, 'rel_size': 0, 'static_px': 0}
+  solo estatico              CV MOTA 0.542  IDF1 0.757  | 20 sec. 0.544  {'interp': 0, 'min_len': 0, 'min_score': 0, 'rel_size': 0, 'static_px': 0}
+  escala + largo             CV MOTA 0.559  IDF1 0.754  | 20 sec. 0.563  {'interp': 0, 'min_len': 20, 'min_score': 0, 'rel_size': 0.6, 'static_px': 0}
+  escala + largo + interp.   CV MOTA 0.559  IDF1 0.754  | 20 sec. 0.563  {'interp': 0, 'min_len': 20, 'min_score': 0, 'rel_size': 0.6, 'static_px': 0}
+  todo                       CV MOTA 0.557  IDF1 0.752  | 20 sec. 0.563  {'interp': 0, 'min_len': 20, 'min_score': 0, 'rel_size': 0.6, 'static_px': 0}

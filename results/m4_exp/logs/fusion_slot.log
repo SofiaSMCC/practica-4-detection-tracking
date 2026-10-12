@@ -1,0 +1,32 @@
+[fusion YRS_slot] pliegue 0: ajuste=0.517 validacion=0.614 [{"buffer": 30, "high": 0.65, "low": 0.2, "match": 0.8, "new": 0.65}, {"interp": 0, "min_len": 0, "min_score": 0, "static_min": 30, "static_px": 0, "static_score": 1.0}]
+[fusion YRS_slot] pliegue 1: ajuste=0.578 validacion=0.431 [{"buffer": 30, "high": 0.65, "low": 0.2, "match": 0.8, "new": 0.65}, {"interp": 0, "min_len": 0, "min_score": 0, "static_min": 30, "static_px": 0, "static_score": 1.0}]
+[fusion YRS_slot] pliegue 2: ajuste=0.473 validacion=0.644 [{"buffer": 30, "high": 0.75, "low": 0.2, "match": 0.8, "new": 0.75}, {"interp": 0, "min_len": 0, "min_score": 0, "static_min": 30, "static_px": 0, "static_score": 1.0}]
+[fusion YRS_slot] pliegue 3: ajuste=0.610 validacion=0.335 [{"buffer": 30, "high": 0.65, "low": 0.2, "match": 0.8, "new": 0.65}, {"interp": 0, "min_len": 0, "min_score": 0, "static_min": 30, "static_px": 0, "static_score": 1.0}]
+[fusion YRS_slot] VALIDACION CRUZADA MOTA=0.506 IDF1=0.746 | final (20 sec.) 0.541 [{"buffer": 30, "high": 0.65, "low": 0.2, "match": 0.8, "new": 0.65}, {"interp": 0, "min_len": 0, "min_score": 0, "static_min": 30, "static_px": 0, "static_score": 1.0}]
+   [126s]
+[fusion YRS_slot_r15] pliegue 0: ajuste=0.502 validacion=0.605 [{"buffer": 30, "high": 0.65, "low": 0.2, "match": 0.8, "new": 0.65}, {"interp": 0, "min_len": 0, "min_score": 0, "static_min": 30, "static_px": 0, "static_score": 1.0}]
+[fusion YRS_slot_r15] pliegue 1: ajuste=0.562 validacion=0.426 [{"buffer": 30, "high": 0.65, "low": 0.2, "match": 0.8, "new": 0.65}, {"interp": 0, "min_len": 0, "min_score": 0, "static_min": 30, "static_px": 0, "static_score": 1.0}]
+[fusion YRS_slot_r15] pliegue 2: ajuste=0.473 validacion=0.618 [{"buffer": 30, "high": 0.75, "low": 0.2, "match": 0.8, "new": 0.75}, {"interp": 0, "min_len": 0, "min_score": 0, "static_min": 30, "static_px": 0, "static_score": 1.0}]
+[fusion YRS_slot_r15] pliegue 3: ajuste=0.600 validacion=0.310 [{"buffer": 30, "high": 0.65, "low": 0.2, "match": 0.8, "new": 0.65}, {"interp": 0, "min_len": 0, "min_score": 0, "static_min": 30, "static_px": 0, "static_score": 1.0}]
+[fusion YRS_slot_r15] VALIDACION CRUZADA MOTA=0.490 IDF1=0.737 | final (20 sec.) 0.528 [{"buffer": 30, "high": 0.65, "low": 0.2, "match": 0.8, "new": 0.65}, {"interp": 0, "min_len": 0, "min_score": 0, "static_min": 30, "static_px": 0, "static_score": 1.0}]
+   [253s]
+[fusion YRS_slot_t50] pliegue 0: ajuste=0.518 validacion=0.614 [{"buffer": 30, "high": 0.65, "low": 0.2, "match": 0.8, "new": 0.65}, {"interp": 0, "min_len": 0, "min_score": 0, "static_min": 30, "static_px": 0, "static_score": 1.0}]
+[fusion YRS_slot_t50] pliegue 1: ajuste=0.582 validacion=0.425 [{"buffer": 30, "high": 0.65, "low": 0.2, "match": 0.8, "new": 0.65}, {"interp": 0, "min_len": 0, "min_score": 0, "static_min": 30, "static_px": 0, "static_score": 1.0}]
+[fusion YRS_slot_t50] pliegue 2: ajuste=0.472 validacion=0.643 [{"buffer": 30, "high": 0.75, "low": 0.2, "match": 0.8, "new": 0.75}, {"interp": 0, "min_len": 0, "min_score": 0, "static_min": 30, "static_px": 0, "static_score": 1.0}]
+[fusion YRS_slot_t50] pliegue 3: ajuste=0.612 validacion=0.335 [{"buffer": 30, "high": 0.65, "low": 0.2, "match": 0.8, "new": 0.65}, {"interp": 0, "min_len": 0, "min_score": 0, "static_min": 30, "static_px": 0, "static_score": 1.0}]
+[fusion YRS_slot_t50] VALIDACION CRUZADA MOTA=0.504 IDF1=0.746 | final (20 sec.) 0.542 [{"buffer": 30, "high": 0.65, "low": 0.2, "match": 0.8, "new": 0.65}, {"interp": 0, "min_len": 0, "min_score": 0, "static_min": 30, "static_px": 0, "static_score": 1.0}]
+   [374s]
+
+== E1 resumen (MOTA en validacion cruzada) ==
+YR         CV MOTA 0.553  IDF1 0.769  | 20 sec. 0.553
+YRS_r15    CV MOTA 0.547  IDF1 0.764  | 20 sec. 0.547
+YRS_half   CV MOTA 0.536  IDF1 0.768  | 20 sec. 0.549
+YRS_slot   CV MOTA 0.506  IDF1 0.746  | 20 sec. 0.541
+YRS_slot_t50 CV MOTA 0.504  IDF1 0.746  | 20 sec. 0.542
+YRS_t50    CV MOTA 0.502  IDF1 0.725  | 20 sec. 0.545
+YRS_t65    CV MOTA 0.496  IDF1 0.743  | 20 sec. 0.527
+YRS_slot_r15 CV MOTA 0.490  IDF1 0.737  | 20 sec. 0.528
+YRS        CV MOTA 0.485  IDF1 0.726  | 20 sec. 0.543
+Y          CV MOTA 0.484  IDF1 0.699  | 20 sec. 0.495
+RS         CV MOTA 0.464  IDF1 0.722  | 20 sec. 0.536
+S          CV MOTA 0.427  IDF1 0.672  | 20 sec. 0.463
